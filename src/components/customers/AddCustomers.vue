@@ -1,18 +1,18 @@
 <template>
   <div class="modal-overlay" @click="closeAddModal">
     <div class="modal-content" @click.stop>
-      <div class="modal-header d-flex justify-content-between mb-4">
-        <h5 class="modal-title">Ajouter un nouveau client</h5>
-        <button type="button" class="btn-close" @click="closeAddModal"></button>
+      <div class="modal-header d-flex justify-content-between mb-4 border-bottom">
+        <h5 class="modal-title mb-4">Create new customer</h5>
+        <button type="button" class="btn-close mb-4" @click="closeAddModal"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body ">
         <form @submit.prevent="submitCustomer">
           <div class="mb-3">
-            <label for="name" class="form-label">Nom</label>
+            <label for="name" class="form-label">Customer Name</label>
             <input type="text" id="name" class="form-control" v-model="newCustomer.name" required />
           </div>
           <div class="mb-3">
-            <label for="address" class="form-label">Adresse</label>
+            <label for="address" class="form-label">Adress</label>
             <input type="text" id="address" class="form-control" v-model="newCustomer.address" required />
           </div>
           <div class="mb-3">
@@ -20,15 +20,20 @@
             <input type="email" id="email" class="form-control" v-model="newCustomer.email" required />
           </div>
           <div class="mb-3">
-            <label for="phone" class="form-label">Téléphone</label>
+            <label for="phone" class="form-label">Phone</label>
             <input type="text" id="phone" class="form-control" v-model="newCustomer.phone" required />
           </div>
-          <button type="submit" class="btn btn-primary">Ajouter</button>
+          <div class="d-flex justify-content-end border-top">
+            <button type="button" class="btn btn-secondary mx-2 mt-4" @click="closeAddModal">Close</button>
+            <button type="submit" class="clr btn text-white mt-4">Confirm</button>
+
+          </div>
+          
         </form>
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <button type="button" class="btn btn-secondary" @click="closeAddModal">Fermer</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -57,6 +62,9 @@ const submitCustomer = () => {
 </script>
 
 <style scoped>
+.clr {
+  background-color: #044e8f;
+}
 .modal-overlay {
   position: fixed;
   top: 0;
