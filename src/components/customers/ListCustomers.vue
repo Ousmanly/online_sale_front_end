@@ -1,22 +1,20 @@
 <template>
   <div class="container">
-    <h2 class="fw-3">List of Customers</h2>
-    <!-- <RouterLink class="list text-decoration-none text-white me-5 fw-bold"  to="/ajoutlist"> -->
-    <button class="clr btn text-white mt-2 mb-4 fw-bold">
-      Add new customer
-    </button>
-    <!-- <button class="clr btn text-white mt-5 mb-4 fw-bold"  v-if="affichebtn" @click="maskBtn">
-       Ajouter une tache
-    </button> -->
-    <!-- </RouterLink>  -->
+    <h2 class="fw-3">Liste des Clients</h2>
+    <div class="d-flex justify-content-end">
+      <button class="clr btn text-white mt-2 mb-4 fw-bold" @click="openAddModal">
+        Ajouter un nouveau client
+      </button>
+    </div>
+
     <div class="table-responsive">
       <table class="table table-striped table-bordered border-black">
         <thead class="table-success">
           <tr>
-            <th>Name</th>
-            <th>Address</th>
+            <th>Nom</th>
+            <th>Adresse</th>
             <th>Email</th>
-            <th>Phone</th>
+            <th>Téléphone</th>
             <th class="text-center">Actions</th>
           </tr>
         </thead>
@@ -24,87 +22,143 @@
           <tr v-for="(customer, index) in customers" :key="index">
             <td>{{ customer.name }}</td>
             <td>{{ customer.address }}</td>
-            <td>{{ customer.Email }}</td>
-            <td>{{ customer.Phone }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.phone }}</td>
             <td class="text-center">
-              <button class="btn btn-sm" @click="openModal(tache)">
-                <i
-                  class="fa-solid fa-eye"
-                  style="color: #4596d3; font-size: 25px"
-                ></i>
+              <button class="btn btn-sm" @click="openModal(customer)">
+                <i class="fa-solid fa-eye" style="color: #4596d3; font-size: 25px"></i>
               </button>
-              <!-- <RouterLink :to="{ path: `/modifietache/${tache.id}` }"> -->
               <button class="btn btn-sm">
-                <i
-                  class="fa-solid fa-pen-to-square"
-                  style="color: #1ac163; font-size: 25px"
-                ></i>
+                <i class="fa-solid fa-pen-to-square" style="color: #1ac163; font-size: 25px"></i>
               </button>
-              <!-- </RouterLink> -->
-              <button class="btn btn-sm" @click="destroyTache(tache.id)">
-                <i
-                  class="fa-solid fa-trash"
-                  style="color: #e30d0d; font-size: 25px"
-                ></i>
+              <button class="btn btn-sm" @click="destroyTache(customer.id)">
+                <i class="fa-solid fa-trash" style="color: #e30d0d; font-size: 25px"></i>
               </button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <!-- <div v-if="isModalVisible" class="modal-overlay" @click="closeModal">
+
+    <div v-if="isModalVisible" class="modal-overlay" @click="closeModal">
       <div class="modal-content" @click.stop>
-        <div class="modal-body">
-          <h3>Détails de la Tâche</h3>
-          <p><strong>Nom :</strong> {{ selectedTache.nom }}</p>
-          <p><strong>Description :</strong> {{ selectedTache.description }}</p>
-          <p><strong>Date de début :</strong> {{ selectedTache.date_debut }}</p>
-          <p><strong>Date de fin :</strong> {{ selectedTache.date_fin }}</p>
-          <p><strong>Projet :</strong> {{ selectedTache.projet }}</p>
+        <div class="modal-header d-flex justify-content-between mb-4">
+          <h5 class="modal-title">Voir le client</h5>
+          <button type="button" class="btn-close" @click="closeModal"></button>
         </div>
-        <button class="btn btn-danger" @click="closeModal">Fermer</button>
+        <div class="modal-body">
+          <p><strong>Nom :</strong> {{ selectedCustomer.name }}</p>
+          <p><strong>Adresse :</strong> {{ selectedCustomer.address }}</p>
+          <p><strong>Email :</strong> {{ selectedCustomer.email }}</p>
+          <p><strong>Téléphone :</strong> {{ selectedCustomer.phone }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" @click="closeModal">Fermer</button>
+        </div>
       </div>
-    </div> -->
+    </div>
+
+    <AddCustomer v-if="isAddModalVisible" @close="closeAddModal" @addCustomer="addCustomer" />
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import AddCustomer from './AddCustomers.vue';
+
 const customers = ref([
-  { name: "Alice Smith", address: "456 Oak Ave, Los Angeles, CA", Email: "alice@example.com", Phone: "987-654-3210" },
-  { name: "Bob Johnson", address: "789 Pine St, Chicago, IL", Email: "bob.johnson@example.com", Phone: "555-123-4567" },
-  { name: "Charlie Brown", address: "321 Maple Dr, Houston, TX", Email: "charlie.b@example.com", Phone: "222-333-4444" },
-  { name: "Diana Prince", address: "987 Cedar Ln, Miami, FL", Email: "diana.p@example.com", Phone: "111-222-3333" },
-  { name: "Eve Adams", address: "654 Willow St, San Francisco, CA", Email: "eve.adams@example.com", Phone: "888-999-7777" }
+  {
+    name: "Alice Smith",
+    address: "456 Oak Ave, Los Angeles, CA",
+    email: "alice@example.com",
+    phone: "987-654-3210",
+  },
+  {
+    name: "Bob Johnson",
+    address: "789 Pine St, Chicago, IL",
+    email: "bob.johnson@example.com",
+    phone: "555-123-4567",
+  },
+  {
+    name: "Charlie Brown",
+    address: "321 Maple Dr, Houston, TX",
+    email: "charlie.b@example.com",
+    phone: "222-333-4444",
+  },
+  {
+    name: "Diana Prince",
+    address: "987 Cedar Ln, Miami, FL",
+    email: "diana.p@example.com",
+    phone: "111-222-3333",
+  },
+  {
+    name: "Eve Adams",
+    address: "654 Willow St, San Francisco, CA",
+    email: "eve.adams@example.com",
+    phone: "888-999-7777",
+  },
+  {
+    name: "Frank White",
+    address: "123 Birch Rd, Boston, MA",
+    email: "frank.white@example.com",
+    phone: "333-444-5555",
+  },
+  {
+    name: "Grace Lee",
+    address: "789 Spruce St, Denver, CO",
+    email: "grace.lee@example.com",
+    phone: "666-777-8888",
+  },
+  {
+    name: "Henry Ford",
+    address: "159 Elm St, Seattle, WA",
+    email: "henry.ford@example.com",
+    phone: "999-888-7777",
+  },
+  {
+    name: "Ivy Nguyen",
+    address: "753 Aspen Ln, Austin, TX",
+    email: "ivy.nguyen@example.com",
+    phone: "444-555-6666",
+  },
+  {
+    name: "Jack Black",
+    address: "963 Cedar Blvd, Orlando, FL",
+    email: "jack.black@example.com",
+    phone: "222-111-0000",
+  },
 ]);
 
-// const store = useGestionStore();
-// let affichebtn = true;
-// const maskBtn = () => {
-//   affichebtn = false;
-// }
-// const isModalVisible = ref(false);
-// const selectedTache = ref(null);
+const isModalVisible = ref(false);
+const selectedCustomer = ref(null);
+const isAddModalVisible = ref(false);
 
-// const openModal = (tache) => {
-//   selectedTache.value = tache;
-//   isModalVisible.value = true;
-// };
+const openModal = (customer) => {
+  selectedCustomer.value = customer;
+  isModalVisible.value = true;
+};
 
-// const closeModal = () => {
-//   isModalVisible.value = false;
-// };
+const closeModal = () => {
+  isModalVisible.value = false;
+};
 
-// const destroyTache = (id) => {
-//   store.deleteTache(id);
-// };
+const openAddModal = () => {
+  isAddModalVisible.value = true;
+};
+
+const closeAddModal = () => {
+  isAddModalVisible.value = false;
+};
+
+const addCustomer = (newCustomer) => {
+  customers.value.push(newCustomer);
+};
 </script>
 
 <style scoped>
 .clr {
   background-color: #044e8f;
 }
-
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -126,7 +180,7 @@ const customers = ref([
   position: relative;
 }
 
-.modal-body {
+.modal-body .modal-header {
   padding: 20px;
 }
 </style>
