@@ -47,10 +47,25 @@
           <button type="button" class="btn-close mb-4" @click="closeModal"></button>
         </div>
         <div class="modal-body">
-          <p><strong>Nom :</strong> {{ selectedCustomer.name }}</p>
-          <p><strong>Adresse :</strong> {{ selectedCustomer.address }}</p>
-          <p><strong>Email :</strong> {{ selectedCustomer.email }}</p>
-          <p><strong>Téléphone :</strong> {{ selectedCustomer.phone }}</p>
+          <form>
+          <div class="mb-3">
+            <label for="name" class="form-label">Customer Name</label>
+            <input type="text" id="name" class="form-control"  :value="selectedCustomer.name" disabled/>
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Adress</label>
+            <input type="text" id="address" class="form-control" :value="selectedCustomer.address" disabled />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" class="form-control" :value="selectedCustomer.email" disabled />
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="text" id="phone" class="form-control" :value="selectedCustomer.phone" disabled/>
+          </div>
+          
+        </form>
         </div>
         <div class="modal-footer border-top">
           <button type="button" class="btn btn-secondary mt-4" @click="closeModal">Close</button>

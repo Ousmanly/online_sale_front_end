@@ -50,20 +50,59 @@
     <div v-if="isModalVisible" class="modal-overlay" @click="closeModal">
       <div class="modal-content" @click.stop>
         <div class="modal-header d-flex justify-content-between mb-4 border-bottom">
-          <h5 class="modal-title mb-4">View customer</h5>
-          <button type="button" class="btn-close mb-4" @click="closeModal"></button>
+          <h5 class="modal-title mb-3">View customer</h5>
+          <button type="button" class="btn-close mb-3" @click="closeModal"></button>
         </div>
         <div class="modal-body">
-          <p><strong>Nom :</strong> {{ selectedProduct.name }}</p>
+          <form @submit.prevent="submitProduct">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="name" class="form-label">Product Name</label>
+            <input type="text" id="name" class="form-control" :value="selectedProduct.name" disabled />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="category" class="form-label">Category</label>
+            <input type="text" id="category" class="form-control" :value="selectedProduct.category" disabled />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="text" id="price" class="form-control" step="0.01" min="0" :value="selectedProduct.price" disabled />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="stock" class="form-label">Stock Quantity</label>
+            <input type="text" id="stock" class="form-control" min="0" :value="selectedProduct.stock" disabled />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="barcode" class="form-label">Barcode</label>
+            <input type="text" id="barcode" class="form-control" :value="selectedProduct.barcode" disabled />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select name="status" id="status" class="form-control" :value="selectedProduct.status" disabled >
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea id="description" class="form-control" :value="selectedProduct.description" disabled rows="3"></textarea>
+        </div>
+      </form>
+          <!-- <p><strong>Nom :</strong> {{ selectedProduct.name }}</p>
           <p><strong>Description :</strong> {{ selectedProduct.description }}</p>
           <p><strong>Category :</strong> {{ selectedProduct.category }}</p>
           <p><strong>Price :</strong> {{ selectedProduct.price }}</p>
           <p><strong>Stock :</strong> {{ selectedProduct.stock }}</p>
           <p><strong>Barcode :</strong> {{ selectedProduct.barcode }}</p>
-          <p><strong>Status :</strong> {{ selectedProduct.status }}</p>
+          <p><strong>Status :</strong> {{ selectedProduct.status }}</p> -->
         </div>
         <div class="modal-footer border-top">
-          <button type="button" class="btn btn-secondary mt-4" @click="closeModal">Fermer</button>
+          <button type="button" class="btn btn-secondary mt-3" @click="closeModal">Fermer</button>
         </div>
       </div>
     </div>
@@ -186,13 +225,15 @@ const destroyProduct = (id) => {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2000;
 }
 
 .modal-content {
   background: white;
   padding: 20px;
   border-radius: 8px;
-  max-width: 500px;
+  max-width: 800px;
+  max-height: 540px;
   width: 100%;
   position: relative;
 }

@@ -3,6 +3,7 @@ import ProductView from '../views/ProductView.vue'
 import CustomerView from '@/views/CustomerView.vue'
 import OrderView from '@/views/OrderView.vue'
 import EditCustomer from '@/components/customers/EditCustomer.vue'
+import AddOrders from '@/components/Orders/AddOrders.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +22,11 @@ const router = createRouter({
       path: '/orders',
       name: 'orders',
       component: OrderView
+    },
+    {
+      path: '/orders/add',
+      name: 'orders/add',
+      component: AddOrders
     },
     // {
     //   path: '/customers/edit/:id',
