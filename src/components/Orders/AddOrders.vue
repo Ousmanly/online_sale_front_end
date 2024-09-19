@@ -1,9 +1,12 @@
 <template>
   <div class="container">
     <form @submit.prevent="submitOrder">
-      <div class="d-flex justify-content-end">
-        <button type="button" class="btn btn-secondary mx-3" @click="closeAddComponent">Return Orders List</button>
-        <button type="submit" class="clr btn text-white">Submit</button>
+      <div class="d-flex justify-content-between">
+        <h2> Create New Order </h2>
+        <div>
+          <button type="button" class="btn btn-secondary mx-3" @click="closeAddComponent">Return to Orders List</button>
+          <button type="submit" class="clr btn text-white">Submit</button>
+        </div>
       </div>
       <div class="row mb-3">
         <div class="col-md-6">

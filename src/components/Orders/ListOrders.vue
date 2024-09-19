@@ -1,6 +1,6 @@
 <template>
   <div class="container" >
-    <h2 class="fw-3">List of Orders </h2>
+    <h2 class="fw-3" v-if="istitleVisible">List of Orders </h2>
     <div class="d-flex justify-content-end"> 
       <button v-if="isBtnVisible" class="clr btn text-white mt-2 mb-4 fw-bold" @click="openAddComponent">
         Add New Order
@@ -13,6 +13,11 @@
       :order="currentOrder"
       @editOrder="updateOrder"
       @close="closeEditComponent"
+    />
+    <DetailOrders
+      v-if="isDetailModalVisible"
+      :order="currentOrder"
+      @close="closeDetailComponent"
     />
     <div class="table-responsive" v-if="isAddTableVisible">
       <table class="table table-striped table-bordered border-black">
@@ -34,7 +39,7 @@
             <td>{{ order.trackNumber }}</td>
             <td>{{ order.status }}</td>
             <td class="text-center">
-              <button class="btn btn-sm" @click="openModal(order)">
+              <button class="btn btn-sm" @click="openDetailComponent(order)">
                 <i class="fa-solid fa-eye" style="color: #4596d3; font-size: 17px"></i>
               </button>
               <button class="btn btn-sm" @click="openEditComponent(order)" >
@@ -50,83 +55,13 @@
     </div>
     
   </div>
-  <div v-if="isModalVisible" class="modal-overlay" @click="closeModal">
-    <div class="modal-content" @click.stop>
-      <div class="modal-header d-flex justify-content-between mb-4 border-bottom">
-        <h5 class="modal-title mb-4">View order</h5>
-        <button type="button" class="btn-close mb-4" @click="closeModal"></button>
-      </div>
-      <div class="modal-body">
-        <form >
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label for="date" class="form-label">Date</label>
-          <input  type="date" class="form-control" id="date" :value="selectedOrder.date" disabled />
-        </div>
-        <div class="col-md-6">
-          <label for="address" class="form-label">Delivery Address</label>
-          <input  type="text" class="form-control" id="address" :value="selectedOrder.deliveryAddress" disabled />
-        </div>
-      </div>
-
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label for="customer" class="form-label">Customer Name</label>
-          <input  type="text" class="form-control" id="customer" :value="selectedOrder.customer" disabled />
-        </div>
-        <div class="col-md-6">
-          <label for="trackNumber" class="form-label">Track Number</label>
-          <input  type="text" class="form-control" id="trackNumber" :value="selectedOrder.trackNumber" disabled/>
-        </div>
-      </div>
-
-      <div class="row mb-3 d-flex justify-content-end">
-        <div class="col-md-6">
-          <label for="status" class="form-label">Order Status</label>
-          <select  class="form-control" id="status" :value="selectedOrder.status" disabled>
-            <option value="Processing">Processing</option>
-            <option value="Shipped">Shipped</option>
-            <option value="Delivered">Delivered</option>
-          </select>
-        </div>
-      </div>
-    </form>
-    <h2 class="mb-3">Order Details</h2>
-    <table class="table table-bordered">
-      <thead class="thead-light">
-        <tr>
-          <th>Product</th>
-          <th>Quantity</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <input type="text" class="form-control"  value="ProductA" disabled/>
-          </td>
-          <td>
-            <input type="text" class="form-control"  value="1" disabled/>
-          </td>
-          <td>
-            <input type="text" class="form-control"  value="0" disabled />
-          </td>
-        </tr>
-      </tbody>
-    </table>
-      </div>
-      <div class="modal-footer border-top">
-        <button type="button" class="btn btn-secondary mt-4" @click="closeModal">Close</button>
-      </div>
-    </div>
-
- </div>
-</template>
+  </template>
 
 <script setup>
 import { ref } from "vue";
 import AddOrders from "./AddOrders.vue";
 import EditOrders from "./EditOrders.vue";
+import DetailOrders from "./DetailOrders.vue";
 
 const orders = ref([
   {
@@ -155,32 +90,26 @@ const orders = ref([
   }
 ]);
 
-const isModalVisible = ref(false);
-const selectedOrder = ref(null);
 const isAddComponentVisible = ref(false);
 const isAddTableVisible = ref(true);
 const isBtnVisible = ref(true);
+const istitleVisible = ref(true);
 const isEditModalVisible = ref(false);
+const isDetailModalVisible = ref(false);
 const currentOrder = ref(null);
 
-const openModal = (customer) => {
-  selectedOrder.value = customer;
-  isModalVisible.value = true;
-};
-
-const closeModal = () => {
-  isModalVisible.value = false;
-};
 
 const openAddComponent = () => {
   isAddComponentVisible.value = true;
   isAddTableVisible.value = false;
   isBtnVisible.value = false;
+  istitleVisible.value = false;
 };
 const closeAddComponent = () =>{
   isAddComponentVisible.value = false;
   isAddTableVisible.value = true;
   isBtnVisible.value = true;
+  istitleVisible.value = true;
 }
 const addOrder = (newOrder) => {
   orders.value.push(newOrder);
@@ -193,11 +122,26 @@ const openEditComponent = (order) => {
   isEditModalVisible.value = true; 
   isAddTableVisible.value = false;
   isBtnVisible.value = false;
+  istitleVisible.value = false;
+};
+const closeDetailComponent = () =>{
+  isDetailModalVisible.value = false; 
+  isAddTableVisible.value = true;
+  isBtnVisible.value = true;
+  istitleVisible.value = true;
+}
+const openDetailComponent = (order) => {
+  currentOrder.value = order; 
+  isDetailModalVisible.value = true; 
+  isAddTableVisible.value = false;
+  isBtnVisible.value = false;
+  istitleVisible.value = false;
 };
 const closeEditComponent = () =>{
   isEditModalVisible.value = false; 
   isAddTableVisible.value = true;
   isBtnVisible.value = true;
+  istitleVisible.value = true;
 }
 const updateOrder = (updatedOrder) => {
   const index = orders.value.findIndex(c => c.id === updatedOrder.id);
