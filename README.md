@@ -4,7 +4,7 @@ La conception d'une application Frontend dynamique avec Vue.js. Cette applicatio
 
 ### Prérequis
 
-- [Vue.js](https://vuejs.org/) (Vue.js)
+- [Vue.js](https://vuejs.org/)
 
 ## Installation
 
@@ -45,7 +45,8 @@ Pour démarrer l'application, exécutez la commande suivante :
 
 - **product**
   - Créer, lire, mettre à jour et supprimer des produits.
-
+**Déploiement vercel**
+    [online sale front end](https://online-sale-front-end.vercel.app/)
 ## Author
 - **GitHub** : [Ousmane Ly](https://github.com/Ousmanly)
 - **LinkedIn** : [Ousmane Ly](www.linkedin.com/in/ousmane-ibrahima-ly-a270a4290)
