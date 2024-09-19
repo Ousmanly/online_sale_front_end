@@ -2,7 +2,7 @@
   <div class="container">
     <form @submit.prevent="submitOrder">
       <div class="d-flex justify-content-end">
-        <button type="button" class="btn btn-secondary mx-3" @click="closeAddComponent">Return Home</button>
+        <button type="button" class="btn btn-secondary mx-3" @click="closeAddComponent">Return Orders List</button>
         <button type="submit" class="clr btn text-white">Submit</button>
       </div>
       <div class="row mb-3">
