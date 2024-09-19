@@ -45,7 +45,7 @@ Pour démarrer l'application, exécutez la commande suivante :
 
 - **product**
   - Créer, lire, mettre à jour et supprimer des produits.
-**Déploiement vercel**
+- **Déploiement vercel**
     [online sale front end](https://online-sale-front-end.vercel.app/)
 ## Author
 - **GitHub** : [Ousmane Ly](https://github.com/Ousmanly)
