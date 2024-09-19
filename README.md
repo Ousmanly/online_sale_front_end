@@ -1,9 +1,9 @@
-# online_sale_front_end
+# Online Sale App
 
-La conception d'une application Frontend dynamique avec Vue.js. Cette application permet des réaliser les actions CRUD.
+Ce projet est une application front-end qui est conçue pour faciliter la gestion des ventes en offrant des composants dédiés pour les clients, les produits et les commandes. Grâce à une interface intuitive, les utilisateurs peuvent effectuer des opérations CRUD (Créer, Lire, Mettre à jour, Supprimer).
 
 ### Prérequis
-
+- [Node.js](https://nodejs.org/) (version 12 ou supérieure)
 - [Vue.js](https://vuejs.org/)
 
 ## Installation
@@ -49,4 +49,4 @@ Pour démarrer l'application, exécutez la commande suivante :
     [online sale front end](https://online-sale-front-end.vercel.app/)
 ## Author
 - **GitHub** : [Ousmane Ly](https://github.com/Ousmanly)
-- **LinkedIn** : [Ousmane Ly](www.linkedin.com/in/ousmane-ibrahima-ly-a270a4290)
+- **LinkedIn** : [Ousmane Ly](https://www.linkedin.com/in/ousmane-ibrahima-ly-a270a4290/)

@@ -13,7 +13,7 @@
         <li class="nav-item">
           <a class="nav-link active text-decoration-none text-white" aria-current="page" href="#">
             
-            <RouterLink class="text-decoration-none text-white" to="/">
+            <RouterLink class="text-decoration-none text-white"  to="/" active-class="active-link">
               <i class="fa-solid fa-users mx-2"></i>
               Customers
             </RouterLink>
@@ -21,7 +21,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link text-decoration-none text-white" href="#">
-            <RouterLink class="text-decoration-none text-white" to="/products">
+            <RouterLink class="text-decoration-none text-white" to="/products" active-class="active-link">
             <i class="fa-solid fa-box-open mx-2"></i>
               Products
             </RouterLink>
@@ -29,7 +29,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link text-decoration-none text-white" href="#">
-            <RouterLink class="text-decoration-none text-white" to="/orders">
+            <RouterLink class="text-decoration-none text-white" to="/orders" active-class="active-link">
               <i class="fa-solid fa-cart-shopping mx-2"></i>
               Orders
             </RouterLink>
@@ -49,7 +49,14 @@
   background-color: #044e8f;
 }
 .my-navbar {
-  margin-bottom: 20px; /* Ajustez la valeur selon vos besoins */
+  margin-bottom: 20px; 
+}
+.active-link {
+  font-weight: bold;
+  background-color: #055a9c; 
+  color: #ffffff; 
+  border-radius: 5px;
+  padding: 16px 12px; 
 }
 
 </style>
