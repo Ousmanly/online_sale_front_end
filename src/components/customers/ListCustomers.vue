@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" >
     <h2 class="fw-3">List of Customers </h2>
     <div class="d-flex justify-content-end">
       <button class="clr btn text-white mt-2 mb-4 fw-bold" @click="openAddModal">
@@ -20,7 +20,6 @@
         </thead>
         <tbody>
           <tr v-for="(customer, index) in customers" :key="index">
-            <!-- <td>{{ customer.name }}</td> -->
             <td>{{ customer.name }}</td>
             <td>{{ customer.address }}</td>
             <td>{{ customer.email }}</td>
@@ -44,7 +43,7 @@
     <div v-if="isModalVisible" class="modal-overlay" @click="closeModal">
       <div class="modal-content" @click.stop>
         <div class="modal-header d-flex justify-content-between mb-4 border-bottom">
-          <h5 class="modal-title mb-4">Voir le client</h5>
+          <h5 class="modal-title mb-4">View customer</h5>
           <button type="button" class="btn-close mb-4" @click="closeModal"></button>
         </div>
         <div class="modal-body">
@@ -54,7 +53,7 @@
           <p><strong>Téléphone :</strong> {{ selectedCustomer.phone }}</p>
         </div>
         <div class="modal-footer border-top">
-          <button type="button" class="btn btn-secondary mt-4" @click="closeModal">Fermer</button>
+          <button type="button" class="btn btn-secondary mt-4" @click="closeModal">Close</button>
         </div>
       </div>
     </div>
@@ -178,18 +177,18 @@ const addCustomer = (newCustomer) => {
 
 
 const openEditModal = (customer) => {
-  currentCustomer.value = customer; // Stocker les données du client à modifier
-  isEditModalVisible.value = true; // Ouvrir le modal
+  currentCustomer.value = customer; 
+  isEditModalVisible.value = true; 
 };
 
 const closeEditModal = () => {
-  isEditModalVisible.value = false; // Fermer le modal
+  isEditModalVisible.value = false;
 };
 
 const updateCustomer = (updatedCustomer) => {
   const index = customers.value.findIndex(c => c.id === updatedCustomer.id);
   if (index !== -1) {
-    customers.value[index] = updatedCustomer; // Mise à jour du client modifié
+    customers.value[index] = updatedCustomer; 
   }
 };
 const destroyCustomer = (id) => {
@@ -234,5 +233,8 @@ const destroyCustomer = (id) => {
 .table td, .table th {
   padding: 4px 8px;
   height: 40px;
+}
+.container{
+  margin-top: 70px;
 }
 </style>

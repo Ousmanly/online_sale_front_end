@@ -31,9 +31,6 @@
           
         </form>
       </div>
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" @click="closeAddModal">Fermer</button>
-      </div> -->
     </div>
   </div>
 </template>
@@ -75,6 +72,7 @@ const submitCustomer = () => {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2000;
 }
 
 .modal-content {

@@ -9,5 +9,7 @@
 
 
 <style scoped>
-
+.container{
+  margin-top: 70px;
+}
 </style>

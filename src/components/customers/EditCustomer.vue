@@ -49,23 +49,16 @@ const props = defineProps({
 });
 
 const editCustomer = ref({ ...props.customer });
-
-// Mettre à jour les informations si le client change
-// watch(() => props.customer, (newCustomer) => {
-//   editCustomer.value = { ...newCustomer };
-// });
-
 const emit = defineEmits();
 
-// Fonction pour fermer le modal
+
 const closeEditModal = () => {
-  emit('close'); // Émettre l'événement de fermeture
+  emit('close'); 
 };
 
-// Fonction pour soumettre la modification
 const submitEdit = () => {
-  emit('editCustomer', { ...editCustomer.value }); // Émettre l'événement de modification
-  closeEditModal(); // Fermer le modal après soumission
+  emit('editCustomer', { ...editCustomer.value });
+  closeEditModal(); 
 };
 </script>
 
@@ -83,6 +76,7 @@ const submitEdit = () => {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2000;
 }
 
 .modal-content {
