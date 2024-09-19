@@ -23,16 +23,12 @@
             <label for="phone" class="form-label">Téléphone</label>
             <input type="text" id="phone" class="form-control" v-model="editCustomer.phone" required />
           </div>
-          <!-- <button type="submit" class="btn btn-primary">Enregistrer</button> -->
           <div class="d-flex justify-content-end border-top">
             <button type="button" class="btn btn-secondary mx-2 mt-4" @click="closeEditModal">Close</button>
             <button type="submit" class="clr btn text-white mt-4">Confirm</button>
 
           </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-secondary" @click="closeEditModal">Fermer</button> -->
       </div>
     </div>
   </div>

@@ -51,7 +51,6 @@ const closeAddModal = () => {
   emit('close'); 
 };
 
-// Fonction pour soumettre le formulaire
 const submitCustomer = () => {
   emit('addCustomer', { ...newCustomer.value });
   closeAddModal();

@@ -23,7 +23,6 @@
         </thead>
         <tbody>
           <tr v-for="(product, index) in products" :key="index">
-            <!-- <td>{{ customer.name }}</td> -->
             <td>{{ product.name }}</td>
             <td>{{ product.description }}</td>
             <td>{{ product.price }}</td>
@@ -50,7 +49,7 @@
     <div v-if="isModalVisible" class="modal-overlay" @click="closeModal">
       <div class="modal-content" @click.stop>
         <div class="modal-header d-flex justify-content-between mb-4 border-bottom">
-          <h5 class="modal-title mb-3">View customer</h5>
+          <h5 class="modal-title mb-3">View product</h5>
           <button type="button" class="btn-close mb-3" @click="closeModal"></button>
         </div>
         <div class="modal-body">
@@ -93,13 +92,6 @@
           <textarea id="description" class="form-control" :value="selectedProduct.description" disabled rows="3"></textarea>
         </div>
       </form>
-          <!-- <p><strong>Nom :</strong> {{ selectedProduct.name }}</p>
-          <p><strong>Description :</strong> {{ selectedProduct.description }}</p>
-          <p><strong>Category :</strong> {{ selectedProduct.category }}</p>
-          <p><strong>Price :</strong> {{ selectedProduct.price }}</p>
-          <p><strong>Stock :</strong> {{ selectedProduct.stock }}</p>
-          <p><strong>Barcode :</strong> {{ selectedProduct.barcode }}</p>
-          <p><strong>Status :</strong> {{ selectedProduct.status }}</p> -->
         </div>
         <div class="modal-footer border-top">
           <button type="button" class="btn btn-secondary mt-3" @click="closeModal">Fermer</button>

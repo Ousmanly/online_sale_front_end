@@ -3,7 +3,7 @@
     <form @submit.prevent="submitEdit">
       <div class="d-flex justify-content-end">
         <button type="button" class="btn btn-secondary mx-3" @click="closeEditComponent">Return Home</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="clr btn text-white">Submit</button>
       </div>
       <div class="row mb-3">
         <div class="col-md-6">
@@ -121,6 +121,9 @@ const removeDetail = (index) => {
 </script>
 
 <style scoped>
+.clr {
+  background-color: #044e8f;
+}
 .container {
   margin-top: 100px;
 }
